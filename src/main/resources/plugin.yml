@@ -1,0 +1,5 @@
+name: ${project.build.finalName}
+author: [deathibring, Nyvil]
+main: dev.tarvos.xyz.Core
+version: ${project.version}
+api-version: 1.18

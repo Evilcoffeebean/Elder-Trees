@@ -1,0 +1,5 @@
+name: ElderTrees
+author: [deathibring, Nyvil]
+main: dev.tarvos.xyz.Core
+version: 1.0-SNAPSHOT
+api-version: 1.18
