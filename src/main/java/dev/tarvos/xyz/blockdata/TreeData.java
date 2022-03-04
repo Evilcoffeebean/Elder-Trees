@@ -1,5 +1,7 @@
-package dev.tarvos.xyz;
+package dev.tarvos.xyz.blockdata;
 
+import dev.tarvos.xyz.Core;
+import dev.tarvos.xyz.particles.TimberEffect;
 import lombok.Getter;
 import org.bukkit.Material;
 import org.bukkit.Particle;
