@@ -6,7 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.logging.Level;
+import java.util.Map;
 
 /**
  * Created by Nyvil, 04/03/2022 at 18:21
@@ -15,22 +15,21 @@ import java.util.logging.Level;
  * @copyright Nyvil 2022 under Apache License 2.0, unless stated otherwise
  */
 
-public class PopulationTask extends BukkitRunnable {
+public class PopulationTask implements Runnable {
 
     @Override
     public void run() {
-        if (Core.getCore().getCache().isEmpty()) {
+        if (Core.getCore().getCache().isEmpty())
             return;
-        }
 
-        for (TreeData data : Core.getCore().getCache()) {
-            if (data.getTargetBlock() == null || data.getTargetBlock().getType() == Material.AIR) {
-                data.getTargetBlock().getWorld().generateTree(data.getTargetBlock().getLocation(), data.getTreeType());
+        for(Map.Entry<TreeData, Long> entry : Core.getCore().getCache().entrySet()) {
+            if(System.currentTimeMillis() >= entry.getValue()) {
+                if (entry.getKey().getTargetBlock().getType() == Material.AIR) {
+                    entry.getKey().getTargetBlock().getWorld().generateTree(entry.getKey().getTargetBlock().getLocation(), entry.getKey().getTreeType());
+                    Core.getCore().getCache().remove(entry.getKey());
+                }
             }
         }
-
-        Core.getCore().getCache().clear();
-        Bukkit.getLogger().log(Level.INFO, "Trees repopulated, clearing cache.");
     }
 
 }
