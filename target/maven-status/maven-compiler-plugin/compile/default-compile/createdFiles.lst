@@ -1,5 +1,9 @@
-dev\tarvos\xyz\TreeData$1.class
-dev\tarvos\xyz\TreeData.class
-dev\tarvos\xyz\Core$1.class
+dev\tarvos\xyz\util\FileUtil.class
+dev\tarvos\xyz\util\LocationStorage.class
+dev\tarvos\xyz\blockdata\TreeData.class
+dev\tarvos\xyz\threads\PopulationTask.class
+dev\tarvos\xyz\particles\TimberEffect.class
+dev\tarvos\xyz\listeners\TreeBreakHandler.class
+dev\tarvos\xyz\blockdata\TreeData$1.class
+dev\tarvos\xyz\commands\AddTreeLocation.class
 dev\tarvos\xyz\Core.class
-dev\tarvos\xyz\TimberEffect.class

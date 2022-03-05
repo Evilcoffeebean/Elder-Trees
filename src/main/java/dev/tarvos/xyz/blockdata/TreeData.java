@@ -66,6 +66,16 @@ public class TreeData {
         this.treeType = type != null ? type : TreeType.TREE;
     }
 
+    public boolean checkConfig(Location provided) {
+        if (!Core.getCore().getTreeConfig().hasData())
+            return false;
+
+        for (Location loc : Core.getCore().getTreeConfig().getSavedLocations()) {
+            if (provided.equals(loc))
+                return true;
+        }
+        return false;
+    }
 
     /**
      * Method to validate whether the tree should be fully destroyed
@@ -139,33 +149,33 @@ public class TreeData {
         }
     }
 
+    private void initDrop(Block given) {
+        given.setType(Material.AIR);
+        given.getDrops().clear();
+        given.getWorld().dropItemNaturally(given.getLocation(), shouldDrop(10) ? elderWood(false) : elderWood(true));
+        new TimberEffect(Particle.VILLAGER_HAPPY).display(given.getLocation());
+        given.getWorld().playSound(given.getLocation(), Sound.BLOCK_WOOD_BREAK, 1f, 1f);
+    }
+
     public void executeTimber() {
-        targetBlock.setType(Material.AIR);
-        targetBlock.getDrops().clear();
+        initDrop(targetBlock);
 
         new BukkitRunnable() {
             double counter = 0;
             @Override
             public void run() {
-
-                counter += 0.75;
+                counter++;
+                Block current = targetBlock.getLocation().add(0, counter, 0).getBlock();
+                getBlockData(current);
 
                 for (BlockFace face : BlockFace.values()) {
-                    Block current = targetBlock.getLocation().add(0, counter, 0).getBlock().getRelative(face);
-                    getBlockData(current);
+                    if (isLog(current.getRelative(face)))
+                        initDrop(current.getRelative(face));
+                }
 
-                    if (isLog(current)) {
-                        current.getDrops().clear();
-                        current.setType(Material.AIR);
-                        current.getWorld().dropItemNaturally(current.getLocation(), shouldDrop(10) ? elderWood(false) : elderWood(true));
-                        new TimberEffect(Particle.VILLAGER_HAPPY).display(current.getLocation());
-                        current.getWorld().playSound(current.getLocation(), Sound.BLOCK_WOOD_BREAK, 1f, 1f);
-                    }
-
-                    if (counter >= 25) {
-                        cancel();
-                        counter = 0;
-                    }
+                if (counter >= 25) {
+                    cancel();
+                    counter = 0;
                 }
             }
         }.runTaskTimer(Core.getCore(), 0L, 2L);

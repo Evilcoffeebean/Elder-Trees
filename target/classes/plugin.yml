@@ -3,3 +3,7 @@ author: [deathibring, Nyvil]
 main: dev.tarvos.xyz.Core
 version: 1.0-SNAPSHOT
 api-version: 1.18
+commands:
+  addtreelocation:
+    description: Generate a tree and save its location.
+    permission: tarvos.addtreelocation

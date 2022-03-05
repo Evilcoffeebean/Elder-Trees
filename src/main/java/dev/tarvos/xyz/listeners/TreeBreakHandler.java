@@ -30,6 +30,7 @@ public class TreeBreakHandler implements Listener {
     public void onBreak(BlockBreakEvent e) {
         final TreeData treeData = new TreeData(e.getBlock());
 
+        if (!treeData.checkConfig(e.getBlock().getLocation())) return;
         if (!treeData.isValid()) return;
         if (!treeData.hasAxe(e.getPlayer())) return;
 
