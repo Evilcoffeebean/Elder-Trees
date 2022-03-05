@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="maven-antrun-" default="main">
-  <target name="main">
-    <copy file="C:\Users\Marin\IdeaProjects\ElderTrees\target/ElderTrees.jar" todir="C:\Users\Marin\OneDrive\Desktop\OSOBNO\MC\Testing Server 1.18\plugins" />
-  </target>
-</project>
