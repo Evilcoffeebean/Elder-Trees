@@ -66,6 +66,12 @@ public class TreeData {
         this.treeType = type != null ? type : TreeType.TREE;
     }
 
+    /**
+     * Loops through existing config locations and returns whether data exists or not
+     *
+     * @param provided Location of tree to check for
+     * @return True if location data exists and allows the BlockBreakEvent to pass
+     */
     public boolean checkConfig(Location provided) {
         if (!Core.getCore().getTreeConfig().hasData())
             return false;

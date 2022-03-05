@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class FileUtil {
 
-    private File file;
+    private final File file;
     private FileConfiguration config;
 
     public FileUtil(File file) {
@@ -43,9 +43,8 @@ public class FileUtil {
                 if (overrideExisting) {
                     config.set(path, value);
                     config.save(file);
-                    return;
-                } else
-                    return;
+                }
+                return;
             }
             config.set(path, value);
             config.save(file);

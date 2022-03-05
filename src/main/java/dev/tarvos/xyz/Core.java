@@ -27,8 +27,11 @@ public class Core extends JavaPlugin {
     public void onEnable() {
         core = this;
         getServer().getPluginManager().registerEvents(new TreeBreakHandler(), this);
+
         getCommand("addtreelocation").setExecutor(new AddTreeLocation());
+
         treeConfig = new LocationStorage(this);
+
         Bukkit.getScheduler().scheduleSyncRepeatingTask(this, new PopulationTask(), 0, 20*60*15); //15 minutes
     }
 
