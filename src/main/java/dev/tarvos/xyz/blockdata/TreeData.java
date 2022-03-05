@@ -66,6 +66,11 @@ public class TreeData {
         this.treeType = type != null ? type : TreeType.TREE;
     }
 
+
+    /**
+     * Method to validate whether the tree should be fully destroyed
+     * @return True if the tree should be destroyed
+     */
     public boolean isValid() {
         for (TreeType type : TYPES) {
             if (isLog(targetBlock) && treeType == type)
@@ -74,6 +79,10 @@ public class TreeData {
         return false;
     }
 
+    /**
+     * Check to see if the player is holding an axe
+     * @param player - the player who is chopping the tree
+     */
     public boolean hasAxe(Player player) {
         for (Material axe : AXES) {
             if (player.getInventory().getItemInMainHand().getType() == axe)
@@ -82,6 +91,11 @@ public class TreeData {
         return false;
     }
 
+    /**
+     * Returns whether the checked block is a log
+     * @param given Block being checked
+     * @return True if the given block is a tree log
+     */
     private boolean isLog(Block given) {
         for (Material log : LOGS) {
             if (given.getType() == log)
@@ -126,7 +140,8 @@ public class TreeData {
     }
 
     public void executeTimber() {
-        targetBlock.breakNaturally();
+        targetBlock.setType(Material.AIR);
+        targetBlock.getDrops().clear();
 
         new BukkitRunnable() {
             double counter = 0;

@@ -5,7 +5,8 @@ import dev.tarvos.xyz.database.DatabaseConnection;
 import dev.tarvos.xyz.listeners.TreeBreakHandler;
 import dev.tarvos.xyz.threads.PopulationTask;
 import lombok.Getter;
-import org.bukkit.event.Listener;
+import lombok.Setter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Map;
@@ -44,5 +45,4 @@ public class Core extends JavaPlugin {
     public void onDisable() {
         cache.clear();
     }
-
 }

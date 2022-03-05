@@ -2,9 +2,7 @@ package dev.tarvos.xyz.threads;
 
 import dev.tarvos.xyz.Core;
 import dev.tarvos.xyz.blockdata.TreeData;
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.Map;
 
@@ -31,5 +29,4 @@ public class PopulationTask implements Runnable {
             }
         }
     }
-
 }

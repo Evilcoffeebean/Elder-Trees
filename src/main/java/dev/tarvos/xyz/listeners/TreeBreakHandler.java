@@ -46,6 +46,16 @@ public class TreeBreakHandler implements Listener {
 
     }
 
+    private ItemStack elderWood(boolean dead) {
+        ItemStack item = new ItemStack(Material.OAK_WOOD, 1);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName(dead ? ChatColor.DARK_GRAY + "Dead Elder Wood" : ChatColor.GREEN + "Charged Elder Wood");
+        item.setItemMeta(meta);
+        if (!dead)
+            addGlow(item);
+        return item;
+    }
+
     private boolean shouldDrop(int dropChance) {
         return r.nextInt(100) <= dropChance;
     }
